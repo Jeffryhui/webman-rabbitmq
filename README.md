@@ -1,3 +1,5 @@
+> 只更新了依赖,fork来自 https://github.com/roiwk/rabbitmq
+
 # RabbitMQ
 rabbitmq async(workerman) and sync PHP Client, Producers, Consumers
 
@@ -8,13 +10,12 @@ rabbitmq 是一个异步（workerman）和同步的PHP客户端，用于异步�
 
 |Version Tag|Dependencies|
 |-----|---|
-|^v1.0| php >=8.0  workerman >= 4.0|
-|^v2.0| php >=8.1  workerman >= 5.0|
+|^v1.0| php >=8.2  workerman >= 5.1|
 
 # Install 安装
 
 ```sh
-composer require roiwk/rabbitmq
+composer require jeffryhui/rabbitmq
 ```
 
 # Usage 使用
