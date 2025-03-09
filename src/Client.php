@@ -1,6 +1,6 @@
 <?php
 
-namespace Roiwk\Rabbitmq;
+namespace Jeffryhui\Rabbitmq;
 
 use Bunny\Channel;
 use Bunny\Message;

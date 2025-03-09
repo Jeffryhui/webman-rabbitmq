@@ -1,6 +1,6 @@
 <?php
 
-use Roiwk\Rabbitmq\Producer;
+use Jeffryhui\Rabbitmq\Producer;
 use Workerman\Timer;
 use Workerman\Worker;
 

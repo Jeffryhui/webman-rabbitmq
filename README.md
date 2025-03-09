@@ -1,4 +1,4 @@
-> 只更新了依赖,fork来自 https://github.com/roiwk/rabbitmq
+> 只更新了依赖,fork来自 https://github.com/Jeffryhui/rabbitmq
 
 # RabbitMQ
 rabbitmq async(workerman) and sync PHP Client, Producers, Consumers
@@ -43,7 +43,7 @@ $config = [
 ## Publisher Demo
 ```php
 // 同步发布者  sync Publisher
-Roiwk\Rabbitmq\Producer::connect($config)->publishSync('Hello World!', '', '', 'hello');
+Jeffryhui\Rabbitmq\Producer::connect($config)->publishSync('Hello World!', '', '', 'hello');
 
 // 异步发布者  async Publisher(workerman)
 
@@ -51,7 +51,7 @@ use Workerman\Worker;
 
 $worker = new Worker();
 $worker->onWorkerStart = function() use($config) {
-    Roiwk\Rabbitmq\Producer::connect($config)->publishAsync('Hello World!', '', '', 'hello');
+    Jeffryhui\Rabbitmq\Producer::connect($config)->publishAsync('Hello World!', '', '', 'hello');
 };
 Worker::runAll();
 ```
@@ -65,10 +65,10 @@ Worker::runAll();
 use Bunny\Channel;
 use Bunny\Message;
 use Bunny\AbstractClient;
-use Roiwk\Rabbitmq\AbstractConsumer;
+use Jeffryhui\Rabbitmq\AbstractConsumer;
 
 // style 1:
-$client = new Roiwk\Rabbitmq\Client($config, null, '', '', 'hello');
+$client = new Jeffryhui\Rabbitmq\Client($config, null, '', '', 'hello');
 $client->syncProcess(function(Message $message, Channel $channel, AbstractClient $client){
     echo " [x] Received ", $message->content, "\n";
     $channel->ack();
@@ -97,7 +97,7 @@ use Bunny\Channel;
 use Bunny\Message;
 use Workerman\Worker;
 use Bunny\AbstractClient;
-use Roiwk\Rabbitmq\AbstractConsumer;
+use Jeffryhui\Rabbitmq\AbstractConsumer;
 
 $worker = new Worker();
 
@@ -142,8 +142,8 @@ Worker::runAll();
 ```php
 namespace app\queue\rabbitmq;
 
-use Roiwk\Rabbitmq\AbstractConsumer;
-use Roiwk\Rabbitmq\Producer;
+use Jeffryhui\Rabbitmq\AbstractConsumer;
+use Jeffryhui\Rabbitmq\Producer;
 use Bunny\Channel;
 use Bunny\Message;
 use Bunny\AbstractClient;
@@ -171,7 +171,7 @@ class Hello extends AbstractConsumer
 1.process.php
 ```php
 'hello-rabbitmq' => [
-    'handler' => Roiwk\Rabbitmq\GroupConsumers::class,
+    'handler' => Jeffryhui\Rabbitmq\GroupConsumers::class,
     'count'   => 2,
     'constructor' => [
         'consumer_dir' => app_path().'/queue/rabbimq',
@@ -180,7 +180,7 @@ class Hello extends AbstractConsumer
     ],
 ]
 ```
-2.在 ```app_path().'/queue/rabbimq'``` 目录下创建php文件, 继承```Roiwk\Rabbitmq\AbstractConsumer```即可, 同上```app\queue\rabbitmq\Hello.php```
+2.在 ```app_path().'/queue/rabbimq'``` 目录下创建php文件, 继承```Jeffryhui\Rabbitmq\AbstractConsumer```即可, 同上```app\queue\rabbitmq\Hello.php```
 
 
 

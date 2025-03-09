@@ -4,8 +4,8 @@ use Bunny\Channel;
 use Bunny\Message;
 use Bunny\AbstractClient;
 use Workerman\Worker;
-use Roiwk\Rabbitmq\Producer;
-use Roiwk\Rabbitmq\AbstractConsumer;
+use Jeffryhui\Rabbitmq\Producer;
+use Jeffryhui\Rabbitmq\AbstractConsumer;
 
 if (file_exists(__DIR__ . '/../../../../../vendor/autoload.php')) {
     require __DIR__ . '/../../../../../vendor/autoload.php';
@@ -14,7 +14,7 @@ if (file_exists(__DIR__ . '/../../../../../vendor/autoload.php')) {
 }
 
 $worker = new Worker();
-$worker->eventLoop = \Workerman\Events\Revolt::class;
+$worker->eventLoop = \Workerman\Events\Fiber::class;
 
 $config = require __DIR__ . '/../config.php';
 $log = require __DIR__ . '/../log.php';
